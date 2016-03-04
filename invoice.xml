@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="invoice_view_form">
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit" ref="account_invoice.invoice_view_form"/>
+            <field name="name">invoice_form</field>
+        </record>
+        <!--Customer Withholding -->
+        <record model="ir.action.act_window" id="act_invoice_out_withholding_form">
+            <field name="name">Comprobante de Retencion Cliente</field>
+            <field name="res_model">account.invoice</field>
+            <field name="domain">[('type', '=', 'out_withholding')]</field>
+            <field name="context">{'type': 'out_withholding'}</field>
+            <field name="search_value"></field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_invoice_out_withholding_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="account_invoice.invoice_view_tree"/>
+            <field name="act_window" ref="act_invoice_out_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_invoice_out_withholding_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="account_invoice.invoice_view_form"/>
+            <field name="act_window" ref="act_invoice_out_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_out_withholding_domain_draft">
+            <field name="name">Draft</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
+            <field name="act_window" ref="act_invoice_out_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_out_withholding_domain_validated">
+            <field name="name">Validated</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('state', '=', 'validated')]</field>
+            <field name="act_window" ref="act_invoice_out_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_out_withholding_domain_posted">
+            <field name="name">Posted</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain">[('state', '=', 'posted')]</field>
+            <field name="act_window" ref="act_invoice_out_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_out_withholding_domain_all">
+            <field name="name">All</field>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_invoice_out_withholding_form"/>
+        </record>
+        <menuitem parent="account_invoice.menu_invoices" action="act_invoice_out_withholding_form"
+            id="menu_invoice_out_withholding_form" sequence="2"/>
+
+        <!--action-->
+        <record model="ir.ui.view" id="out_withholding_start_view_form">
+            <field name="model">nodux_account_withholding_ec.out_withholding.start</field>
+            <field name="type">form</field>
+            <field name="name">out_withholding_start_form</field>
+        </record>
+        <record model="ir.action.wizard" id="out_withholding">
+            <field name="name">Comprobante de Retencion Cliente</field>
+            <field name="wiz_name">nodux_account_withholding_ec.out_withholding</field>
+            <field name="model">account.invoice</field>
+        </record>
+        <record model="ir.action.keyword" id="out_withholding_keyword">
+            <field name="keyword">form_action</field>
+            <field name="model">account.invoice,-1</field>
+            <field name="action" ref="out_withholding"/>
+        </record>
+        <!--Withholding in -->
+        <record model="ir.action.act_window" id="act_invoice_in_withholding_form">
+            <field name="name">Comprobante de Retencion Proveedor</field>
+            <field name="res_model">account.invoice</field>
+            <field name="domain">[('type', '=', 'in_withholding')]</field>
+            <field name="context">{'type': 'in_withholding'}</field>
+            <field name="search_value"></field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_invoice_in_withholding_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="account_invoice.invoice_view_tree"/>
+            <field name="act_window" ref="act_invoice_in_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_invoice_in_withholding_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="account_invoice.invoice_view_form"/>
+            <field name="act_window" ref="act_invoice_in_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_in_withholding_domain_draft">
+            <field name="name">Draft</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
+            <field name="act_window" ref="act_invoice_in_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_in_withholding_domain_validated">
+            <field name="name">Validated</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('state', '=', 'validated')]</field>
+            <field name="act_window" ref="act_invoice_in_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_in_withholding_domain_posted">
+            <field name="name">Posted</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain">[('state', '=', 'posted')]</field>
+            <field name="act_window" ref="act_invoice_in_withholding_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_in_withholding_domain_all">
+            <field name="name">All</field>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_invoice_in_withholding_form"/>
+        </record>
+        <menuitem parent="account_invoice.menu_invoices" action="act_invoice_in_withholding_form"
+            id="menu_invoice_in_withholding_form" sequence="5"/>
+            
+        <!--action-->
+        <record model="ir.ui.view" id="in_withholding_start_view_form">
+            <field name="model">nodux_account_withholding_ec.out_withholding.start</field>
+            <field name="type">form</field>
+            <field name="name">in_withholding_start_form</field>
+        </record>
+        <record model="ir.action.wizard" id="in_withholding">
+            <field name="name">Comprobante de Retencion Proveedor</field>
+            <field name="wiz_name">nodux_account_withholding_ec.out_withholding</field>
+            <field name="model">account.invoice</field>
+        </record>
+        <record model="ir.action.keyword" id="in_withholding_keyword">
+            <field name="keyword">form_action</field>
+            <field name="model">account.invoice,-1</field>
+            <field name="action" ref="in_withholding"/>
+        </record>
+        
+        
+        <!--Payment Advanced -->
+        <record model="ir.action.act_window" id="act_invoice_advanced_form">
+            <field name="name">Generar Anticipo</field>
+            <field name="res_model">account.invoice</field>
+            <field name="domain">[('type', '=', 'anticipo')]</field>
+            <field name="context">{'type': 'anticipo'}</field>
+            <field name="search_value"></field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_invoice_advanced_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="account_invoice.invoice_view_tree"/>
+            <field name="act_window" ref="act_invoice_advanced_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_invoice_advanced_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="account_invoice.invoice_view_form"/>
+            <field name="act_window" ref="act_invoice_advanced_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_draft">
+            <field name="name">Draft</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
+            <field name="act_window" ref="act_invoice_advanced_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_validated">
+            <field name="name">Validated</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('state', '=', 'validated')]</field>
+            <field name="act_window" ref="act_invoice_advanced_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_posted">
+            <field name="name">Posted</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain">[('state', '=', 'posted')]</field>
+            <field name="act_window" ref="act_invoice_advanced_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_all">
+            <field name="name">All</field>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_invoice_advanced_form"/>
+        </record>
+        <menuitem parent="account_invoice.menu_invoices" action="act_invoice_advanced_form"
+            id="menu_invoice_advanced_form" sequence="7"/>
+            
+        <!-- Payment Advanced -Report -->
+        <record model="ir.action.report" id="advanced">
+            <field name="name">Comprobante de Anticipo</field>
+            <field name="model">account.invoice</field>
+            <field name="report_name">account.invoice.advanced</field>
+            <field name="report">nodux_account_withholding_ec/advanced.odt</field>
+        </record>
+        <record model="ir.action.keyword" id="advanced_keyword">
+            <field name="keyword">form_print</field>
+            <field name="model">account.invoice,-1</field>
+            <field name="action" ref="advanced"/>
+        </record>
+    </data>
+</tryton>
+
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<!--<tryton>
+    <data>
+        <record model="ir.ui.view" id="invoice_view_form">
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit" ref="account_invoice.invoice_view_form"/>
+            <field name="name">invoice_form</field>
+        </record>
+                
+         <record model="ir.model.button" id="invoice_draft_w_button">
+            <field name="name">draft_w</field>
+            <field name="model" search="[('model', '=', 'account.invoice')]"/>
+        </record>
+        <record model="ir.model.button-res.group"
+            id="invoice_draft_w_button_group_account">
+            <field name="button" ref="invoice_draft_w_button"/>
+            <field name="group" ref="account.group_account"/>
+        </record>
+
+        <record model="ir.model.button" id="invoice_validate_w_button">
+            <field name="name">validate_invoice_w</field>
+            <field name="model" search="[('model', '=', 'account.invoice')]"/>
+        </record>
+        <record model="ir.model.button-res.group"
+            id="invoice_validate_w_button_group_account">
+            <field name="button" ref="invoice_validate_w_button"/>
+            <field name="group" ref="account.group_account"/>
+        </record>
+
+        <record model="ir.model.button" id="invoice_post_w_button">
+            <field name="name">post_w</field>
+            <field name="model" search="[('model', '=', 'account.invoice')]"/>
+        </record>
+        <record model="ir.model.button-res.group"
+            id="invoice_post_w_button_group_account">
+            <field name="button" ref="invoice_post_w_button"/>
+            <field name="group" ref="account.group_account"/>
+        </record>
+    </data>
+</tryton-->
+
+<!-- Agregar ride de retencion >
+        <record model="ir.action.report" id="withholding">
+            <field name="name">Retencion RIDE</field>
+            <field name="model">account.invoice</field>
+            <field name="report_name">account.invoice.withholding</field>
+            <field name="report">nodux_account_withholding_ec/withholding.odt</field>
+        </record>
+        <record model="ir.action.keyword" id="withholding_keyword">
+            <field name="keyword">form_print</field>
+            <field name="model">account.invoice,-1</field>
+            <field name="action" ref="withholding"/>
+        </record-->
+        
+        <!-- Agregar reporte de retenciones 
+        <record model="ir.action.report" id="report_withholding">
+            <field name="name">Reporte de Retenciones</field>
+            <field name="model">account.invoice</field>
+            <field name="report_name">account.invoice.report_withholding</field>
+            <field name="report">nodux_account_withholding_ec/withholding_report.odt</field>
+        </record>
+        <record model="ir.action.keyword" id="report_withholding_keyword">
+            <field name="keyword">form_print</field>
+            <field name="model">account.invoice,-1</field>
+            <field name="action" ref="report_withholding"/>
+        </record>
+        -->
+

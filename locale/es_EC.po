@@ -1,0 +1,314 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.fiscalyear,anticipo_sequence:"
+msgid "Advanced Payment Sequence"
+msgstr "Secuencia de anticipo"
+
+msgctxt "field:account.fiscalyear,in_withholding_sequence:"
+msgid "Supplier Withholding Sequence"
+msgstr "Secuencia de retención a proveedor"
+
+msgctxt "field:account.fiscalyear,out_debit_note_sequence:"
+msgid "Debit Note Sequence"
+msgstr "Secuencia de nota de débito"
+
+msgctxt "field:account.fiscalyear,out_withholding_sequence:"
+msgid "Customer Withholding Sequence"
+msgstr "Secuencia de retención de cliente"
+
+msgctxt "field:account.invoice,base_imponible:"
+msgid "Valor Base imponible"
+msgstr "Valor de base imponible"
+
+msgctxt "field:account.invoice,iva:"
+msgid "Valor Impuesto"
+msgstr "Valor impuesto"
+
+msgctxt "field:account.invoice,number_w:"
+msgid "Number"
+msgstr "Número"
+
+msgctxt "field:account.invoice,number_withholding:"
+msgid "Withholding Number"
+msgstr "Número de retención"
+
+msgctxt "field:account.invoice,total_amount_2:"
+msgid "Saldo a favor del cliente"
+msgstr "Saldo a favor del cliente"
+
+msgctxt "field:account.invoice,total_withholding:"
+msgid "Total a Retener"
+msgstr "Total a retener"
+
+msgctxt "field:account.invoice,untaxed_withholding_t:"
+msgid "Impuesto Retención"
+msgstr "Impuesto de retención"
+
+msgctxt "field:account.invoice,value_withholding_b:"
+msgid "Valor a Retener Base"
+msgstr ""
+
+msgctxt "field:account.invoice,value_withholding_t:"
+msgid "Valor a Retener"
+msgstr "Total a retener"
+
+msgctxt "field:account.invoice,voucher:"
+msgid "Comprobante Retencion"
+msgstr "Comprobante retención"
+
+msgctxt "field:account.period,anticipo_sequence:"
+msgid "Advanced Payment Sequence"
+msgstr "Secuencia de anticipo"
+
+msgctxt "field:account.period,in_withholding_sequence:"
+msgid "Supplier Withholding Sequence"
+msgstr "Secuencia de retención a proveedor"
+
+msgctxt "field:account.period,out_debit_note_sequence:"
+msgid "Debit Note Sequence"
+msgstr "Secuencia de nota de débito"
+
+msgctxt "field:account.period,out_withholding_sequence:"
+msgid "Customer Withholding Sequence"
+msgstr "Secuencia de retención de cliente"
+
+msgctxt "field:nodux_account_withholding_ec.out_withholding.start,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "model:ir.action,name:"
+msgid "Reporte de Retenciones"
+msgstr "Retención RIDE"
+
+msgctxt "model:ir.action,name:act_invoice_advanced_form"
+msgid "Generar Anticipo"
+msgstr "Generar anticipo"
+
+msgctxt "model:ir.action,name:act_invoice_in_withholding_form"
+msgid "Comprobante de Retencion Proveedor"
+msgstr "Comprobante de retención a proveedor"
+
+msgctxt "model:ir.action,name:act_invoice_out_withholding_form"
+msgid "Comprobante de Retencion Cliente"
+msgstr "Comprobante de retención  de cliente"
+
+msgctxt "model:ir.action,name:advanced"
+msgid "Comprobante de Anticipo"
+msgstr "Comprobante de anticipo"
+
+msgctxt "model:ir.action,name:in_withholding"
+msgid "Comprobante de Retencion Proveedor"
+msgstr "Comprobante de retención de proveedor"
+
+msgctxt "model:ir.action,name:out_withholding"
+msgid "Comprobante de Retencion Cliente"
+msgstr "Comprobante de retención de cliente"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_all"
+msgid "All"
+msgstr "Todo"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_draft"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_posted"
+msgid "Posted"
+msgstr "Contabilizado"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_validated"
+msgid "Validated"
+msgstr "Validado"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_in_withholding_domain_all"
+msgid "All"
+msgstr "Todo"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_in_withholding_domain_draft"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_in_withholding_domain_posted"
+msgid "Posted"
+msgstr "Contabilizado"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_in_withholding_domain_validated"
+msgid "Validated"
+msgstr "Validado"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_out_withholding_domain_all"
+msgid "All"
+msgstr "Todo"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_out_withholding_domain_draft"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_out_withholding_domain_posted"
+msgid "Posted"
+msgstr "Contabilizado"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_invoice_out_withholding_domain_validated"
+msgid "Validated"
+msgstr "Validado"
+
+msgctxt "model:ir.ui.menu,name:menu_invoice_advanced_form"
+msgid "Generar Anticipo"
+msgstr "Generar anticipo"
+
+msgctxt "model:ir.ui.menu,name:menu_invoice_in_withholding_form"
+msgid "Comprobante de Retencion Proveedor"
+msgstr "Comprobante de retención de proveedor"
+
+msgctxt "model:ir.ui.menu,name:menu_invoice_out_withholding_form"
+msgid "Comprobante de Retencion Cliente"
+msgstr "Comprobante de retención de cliente"
+
+msgctxt "model:nodux_account_withholding_ec.out_withholding.start,name:"
+msgid "Withholding Out Start"
+msgstr "Retención a proveedor - Iniciar"
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "-"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid ":"
+msgstr ":"
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "Anticipo"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "C"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "Comprobante Anticipo"
+msgstr "Comprobante anticipo"
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "Date:"
+msgstr "Fecha:"
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "Identificación:"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "Impreso:"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "MOTIVO"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "N°:"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "Nº:"
+msgstr ""
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "OMPROBANTE DE ANTICIPO"
+msgstr ""
+
+#, fuzzy
+msgctxt "odt:account.invoice.advanced:"
+msgid "RUC"
+msgstr "RUC"
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "Razón social/Nombre y Apellidos:"
+msgstr "Razón social/Nombre y apellidos:"
+
+msgctxt "odt:account.invoice.advanced:"
+msgid "VALOR ANTICIPO"
+msgstr "Valor de anticipo"
+
+msgctxt "selection:account.invoice,type:"
+msgid "Anticipo a Cliente"
+msgstr ""
+
+msgctxt "selection:account.invoice,type:"
+msgid "Comprobante de Retencion Cliente "
+msgstr ""
+
+msgctxt "selection:account.invoice,type:"
+msgid "Comprobante de Retencion Proveedor "
+msgstr ""
+
+msgctxt "view:account.invoice:"
+msgid "Also known as Pro Forma"
+msgstr "También conocido como proforma"
+
+msgctxt "view:account.invoice:"
+msgid "Anticipo Cliente"
+msgstr ""
+
+msgctxt "view:account.invoice:"
+msgid "Are you sure to cancel the invoice?"
+msgstr "¿Está seguro que desea cancelar la factura?"
+
+msgctxt "view:account.invoice:"
+msgid "Comprobante de Retencion Cliente"
+msgstr "Comprobante de retención"
+
+msgctxt "view:account.invoice:"
+msgid "Validate"
+msgstr "Validar"
+
+msgctxt "view:account.invoice:"
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+msgctxt "view:account.invoice:"
+msgid "_Draft"
+msgstr "_Borrador"
+
+msgctxt "view:account.invoice:"
+msgid "_Pay"
+msgstr "_Pagar"
+
+msgctxt "view:account.invoice:"
+msgid "_Post"
+msgstr "_Contabilizar"
+
+msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
+msgid "Are you sure to WITHHOLDING those/this invoice(s)?"
+msgstr "¿Está seguro de realizar la retención a esta factura?"
+
+msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
+msgid "SUPPLIER WITHHOLDING"
+msgstr "Retención a proveedor"
+
+msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
+msgid "WITHHOLDING"
+msgstr "Retención"
+
+msgctxt ""
+"wizard_button:nodux_account_withholding_ec.out_withholding,start,end:"
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgctxt ""
+"wizard_button:nodux_account_withholding_ec.out_withholding,start,withholdingOut:"
+msgid "Withholding"
+msgstr "Retención"

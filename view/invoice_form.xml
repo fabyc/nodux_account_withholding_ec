@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<data>    
+    
+    <xpath expr="/form/notebook/page[@id='invoice']" position="replace_attributes">
+        <page id= "invoice" states="{'invisible': Eval('type').in_(['out_withholding', 'in_withholding','anticipo'])}"/>
+    </xpath>
+    
+    <xpath expr="/form/notebook/page[@id='info']" position="before">
+        <page string="Comprobante de Retencion Cliente" id="out_withholding" col="6"
+            states="{'invisible': Eval('type').in_(['in_credit_note', 'in_invoice', 'out_debit_note', 'out_credit_note', 'out_invoice','anticipo'])}">
+            <newline/>
+            <label name="invoice_date"/>
+            <field name="invoice_date"/>
+            <label name="payment_term"/>
+            <field name="payment_term"/>
+            <label name="currency"/>
+            <field name="currency"/>
+             <newline />
+            <label name="number_withholding"/>
+            <field name="number_withholding"/>
+            <label name="number_w"/>
+            <field name="number_w"/>
+            <group col="2" colspan="6" id="taxes_amount_state_buttons">
+                <group col="1" colspan="1" id="taxes">
+                    <field name="taxes"
+                        view_ids="account_invoice.invoice_tax_view_tree_sequence"/>
+                </group>
+                <group col="4" colspan="1" id="amount_state_buttons">
+                    <group col="2" colspan="2" id="reconciled_state">
+                        <label name="reconciled"/>
+                        <field name="reconciled" xexpand="0"/>
+                        <label name="state"/>
+                        <field name="state"/>
+                    </group>
+                    <group col="2" colspan="2" id="amount">
+                        <label name="base_imponible" xalign="1.0" xexpand="1"/>
+                        <field name="base_imponible" xalign="1.0" xexpand="0"/>
+                        <label name="iva" xalign="1.0" xexpand="1"/>
+                        <field name="iva" xalign="1.0" xexpand="0"/>
+                        <label name="total_amount" xalign="1.0" xexpand="1"/>
+                        <field name="total_amount" xalign="1.0" xexpand="0"/>
+                    </group>
+                    <group col="5" colspan="4" id="buttons">
+                        <button name="cancel" string="_Cancel"
+                            icon="tryton-cancel"
+                            confirm="Are you sure to cancel the invoice?"/>
+                        <button name="draft" string="_Draft"
+                            icon="tryton-go-previous"/>
+                        <button name="validate_invoice"
+                            string="Validate"
+                            help="Also known as Pro Forma"
+                            icon="tryton-go-next"/>
+                        <button name="post" string="_Post"
+                            icon="tryton-ok"/>
+                        <button name="pay" string="_Pay"
+                            icon="tryton-go-next"/>
+                    </group>
+                </group>
+            </group>
+        </page>
+    </xpath>
+    
+    <xpath expr="/form/notebook/page[@id='info']" position="before">
+        <page string="Anticipo Cliente" id="anticipo" col="6"
+            states="{'invisible': Eval('type').in_(['in_credit_note', 'in_invoice', 'out_debit_note', 'out_credit_note', 'out_invoice','out_withholding', 'in_withholding'])}">
+            <newline/>
+            <label name="invoice_date"/>
+            <field name="invoice_date"/>
+            <label name="payment_term"/>
+            <field name="payment_term"/>
+            <label name="currency"/>
+            <field name="currency"/>
+            <newline />
+            <group col="2" colspan="6" id="taxes_amount_state_buttons">
+                
+                <group col="4" colspan="1" id="amount_state_buttons">
+                    <group col="2" colspan="2" id="reconciled_state">
+                        <label name="reconciled"/>
+                        <field name="reconciled" xexpand="0"/>
+                        <label name="state"/>
+                        <field name="state"/>
+                    </group>
+                    <group col="2" colspan="2" id="amount">
+                        <label name="total_amount_2" xalign="1.0" xexpand="1"/>
+                        <field name="total_amount_2" xalign="1.0" xexpand="0"/>
+                        <label name="total_amount" xalign="1.0" xexpand="1"/>
+                        <field name="total_amount" xalign="1.0" xexpand="0"/>
+                    </group>
+                    <group col="5" colspan="5" id="buttons">
+                        <button name="cancel" string="_Cancel"
+                            icon="tryton-cancel"
+                            confirm="Are you sure to cancel the invoice?"/>
+                        <button name="draft" string="_Draft"
+                            icon="tryton-go-previous"/>
+                        <button name="validate_invoice"
+                            string="Validate"
+                            help="Also known as Pro Forma"
+                            icon="tryton-go-next"/>
+                        <button name="post" string="_Post"
+                            icon="tryton-ok"/>
+                        <button name="pay" string="_Pay"
+                            icon="tryton-go-next"/>
+                    </group>
+                </group>
+            </group>
+        </page>
+    </xpath>
+</data>
+    <!--
+    <xpath expr="/form/notebook/page[@id='payment']" position="after">
+        <page string="Comprobante de Retencion Proveedor" id="in_withholding" col="6"
+            states="{'invisible': Eval('type').in_(['in_credit_note', 'out_invoice', 'out_debit_note', 'out_credit_note'])}">
+            <label name="number_w"/>
+            <field name="number_w"/>
+            <newline />
+            <label name="untaxed_amount"/>
+            <field name="untaxed_amount"/>
+            <label name="value_withholding_b"/>
+            <field name="value_withholding_b"/>  
+            <label name="untaxed_withholding_b"/>
+            <field name="untaxed_withholding_b"/>
+            <newline />
+            <label name="tax_amount"/>
+            <field name="tax_amount"/>
+            <label name="value_withholding_t"/>
+            <field name="value_withholding_t"/>
+            <label name="untaxed_withholding_t"/>
+            <field name="untaxed_withholding_t"/>
+            <newline />
+            <label name="total_amount"/>
+            <field name="total_amount"/>
+            <label name="total_withholding"/>
+            <field name="total_withholding"/>
+            <newline />
+            <newline />
+            <group col="1" colspan="1" id="buttons">
+                <button name="post" string="Contabilizar Retencion"
+                    icon= "tryton-go-next"/>
+                <button name="pay" string="_Pay"
+                    icon="tryton-go-next"/>
+            </group>
+        </page>
+    </xpath>
+    <?xml version="1.0"?>
+<data>
+<xpath expr="/form/notebook/page[@id='invoice']/field[@name='currency']" position="after">
+        <button name="post" 
+            string="Enviar al SRI"
+            help="Enviar SRI para la Validacion"
+            icon= "tryton-go-next"/>
+    </xpath>
+</data>
+    
+-->
