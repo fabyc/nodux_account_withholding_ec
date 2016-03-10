@@ -16,5 +16,4 @@ def register():
     Pool.register(
         Withholding,
         ReportWithholding,
-        Advanced,
         module='nodux_account_withholding_ec', type_='report')

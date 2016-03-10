@@ -131,65 +131,6 @@ this repository contains the full copyright notices and license terms. -->
             <field name="model">account.invoice,-1</field>
             <field name="action" ref="in_withholding"/>
         </record>
-        
-        
-        <!--Payment Advanced -->
-        <record model="ir.action.act_window" id="act_invoice_advanced_form">
-            <field name="name">Generar Anticipo</field>
-            <field name="res_model">account.invoice</field>
-            <field name="domain">[('type', '=', 'anticipo')]</field>
-            <field name="context">{'type': 'anticipo'}</field>
-            <field name="search_value"></field>
-        </record>
-        <record model="ir.action.act_window.view" id="act_invoice_advanced_form_view1">
-            <field name="sequence" eval="10"/>
-            <field name="view" ref="account_invoice.invoice_view_tree"/>
-            <field name="act_window" ref="act_invoice_advanced_form"/>
-        </record>
-        <record model="ir.action.act_window.view" id="act_invoice_advanced_form_view2">
-            <field name="sequence" eval="20"/>
-            <field name="view" ref="account_invoice.invoice_view_form"/>
-            <field name="act_window" ref="act_invoice_advanced_form"/>
-        </record>
-        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_draft">
-            <field name="name">Draft</field>
-            <field name="sequence" eval="10"/>
-            <field name="domain">[('state', '=', 'draft')]</field>
-            <field name="act_window" ref="act_invoice_advanced_form"/>
-        </record>
-        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_validated">
-            <field name="name">Validated</field>
-            <field name="sequence" eval="20"/>
-            <field name="domain">[('state', '=', 'validated')]</field>
-            <field name="act_window" ref="act_invoice_advanced_form"/>
-        </record>
-        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_posted">
-            <field name="name">Posted</field>
-            <field name="sequence" eval="30"/>
-            <field name="domain">[('state', '=', 'posted')]</field>
-            <field name="act_window" ref="act_invoice_advanced_form"/>
-        </record>
-        <record model="ir.action.act_window.domain" id="act_invoice_advanced_domain_all">
-            <field name="name">All</field>
-            <field name="sequence" eval="9999"/>
-            <field name="domain"></field>
-            <field name="act_window" ref="act_invoice_advanced_form"/>
-        </record>
-        <menuitem parent="account_invoice.menu_invoices" action="act_invoice_advanced_form"
-            id="menu_invoice_advanced_form" sequence="7"/>
-            
-        <!-- Payment Advanced -Report -->
-        <record model="ir.action.report" id="advanced">
-            <field name="name">Comprobante de Anticipo</field>
-            <field name="model">account.invoice</field>
-            <field name="report_name">account.invoice.advanced</field>
-            <field name="report">nodux_account_withholding_ec/advanced.odt</field>
-        </record>
-        <record model="ir.action.keyword" id="advanced_keyword">
-            <field name="keyword">form_print</field>
-            <field name="model">account.invoice,-1</field>
-            <field name="action" ref="advanced"/>
-        </record>
     </data>
 </tryton>
 

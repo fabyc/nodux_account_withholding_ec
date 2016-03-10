@@ -2,14 +2,13 @@
 <!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
 this repository contains the full copyright notices and license terms. -->
 <data>    
-    
     <xpath expr="/form/notebook/page[@id='invoice']" position="replace_attributes">
-        <page id= "invoice" states="{'invisible': Eval('type').in_(['out_withholding', 'in_withholding','anticipo'])}"/>
+        <page id= "invoice" states="{'invisible': Eval('type').in_(['out_withholding', 'in_withholding'])}"/>
     </xpath>
     
     <xpath expr="/form/notebook/page[@id='info']" position="before">
         <page string="Comprobante de Retencion Cliente" id="out_withholding" col="6"
-            states="{'invisible': Eval('type').in_(['in_credit_note', 'in_invoice', 'out_debit_note', 'out_credit_note', 'out_invoice','anticipo'])}">
+            states="{'invisible': Eval('type').in_(['in_credit_note', 'in_invoice', 'out_debit_note', 'out_credit_note', 'out_invoice', 'advanced'])}">
             <newline/>
             <label name="invoice_date"/>
             <field name="invoice_date"/>
@@ -43,52 +42,6 @@ this repository contains the full copyright notices and license terms. -->
                         <field name="total_amount" xalign="1.0" xexpand="0"/>
                     </group>
                     <group col="5" colspan="4" id="buttons">
-                        <button name="cancel" string="_Cancel"
-                            icon="tryton-cancel"
-                            confirm="Are you sure to cancel the invoice?"/>
-                        <button name="draft" string="_Draft"
-                            icon="tryton-go-previous"/>
-                        <button name="validate_invoice"
-                            string="Validate"
-                            help="Also known as Pro Forma"
-                            icon="tryton-go-next"/>
-                        <button name="post" string="_Post"
-                            icon="tryton-ok"/>
-                        <button name="pay" string="_Pay"
-                            icon="tryton-go-next"/>
-                    </group>
-                </group>
-            </group>
-        </page>
-    </xpath>
-    
-    <xpath expr="/form/notebook/page[@id='info']" position="before">
-        <page string="Anticipo Cliente" id="anticipo" col="6"
-            states="{'invisible': Eval('type').in_(['in_credit_note', 'in_invoice', 'out_debit_note', 'out_credit_note', 'out_invoice','out_withholding', 'in_withholding'])}">
-            <newline/>
-            <label name="invoice_date"/>
-            <field name="invoice_date"/>
-            <label name="payment_term"/>
-            <field name="payment_term"/>
-            <label name="currency"/>
-            <field name="currency"/>
-            <newline />
-            <group col="2" colspan="6" id="taxes_amount_state_buttons">
-                
-                <group col="4" colspan="1" id="amount_state_buttons">
-                    <group col="2" colspan="2" id="reconciled_state">
-                        <label name="reconciled"/>
-                        <field name="reconciled" xexpand="0"/>
-                        <label name="state"/>
-                        <field name="state"/>
-                    </group>
-                    <group col="2" colspan="2" id="amount">
-                        <label name="total_amount_2" xalign="1.0" xexpand="1"/>
-                        <field name="total_amount_2" xalign="1.0" xexpand="0"/>
-                        <label name="total_amount" xalign="1.0" xexpand="1"/>
-                        <field name="total_amount" xalign="1.0" xexpand="0"/>
-                    </group>
-                    <group col="5" colspan="5" id="buttons">
                         <button name="cancel" string="_Cancel"
                             icon="tryton-cancel"
                             confirm="Are you sure to cancel the invoice?"/>

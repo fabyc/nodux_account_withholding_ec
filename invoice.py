@@ -18,8 +18,7 @@ from trytond.pyson import If, Eval, Bool, Id
 from trytond.transaction import Transaction
 from trytond.pool import Pool
 
-__all__ = ['Invoice', 'WithholdingOutStart', 'WithholdingOut','Withholding','ReportWithholding','Advanced'
-]
+__all__ = ['Invoice', 'WithholdingOutStart', 'WithholdingOut','Withholding','ReportWithholding']
         
 __metaclass__ = PoolMeta
 #customer->cliente
@@ -83,7 +82,6 @@ class Invoice:
         new_sel = [
             ('out_withholding', 'Comprobante de Retencion Cliente '),
             ('in_withholding', 'Comprobante de Retencion Proveedor '),
-            ('anticipo', 'Anticipo a Cliente')
         ]
         if new_sel not in cls.type.selection:
             cls.type.selection.extend(new_sel)
@@ -309,7 +307,7 @@ class Invoice:
     @Workflow.transition('validated')
     def validate_invoice(cls, invoices):
         for invoice in invoices:
-            if invoice.type in ('in_withholding', 'out_withholding', 'in_invoice', 'anticipo'):
+            if invoice.type in ('in_withholding', 'out_withholding','anticipo'):
                 #invoice.get_ventas()
                 invoice.set_number()
                 invoice.create_move()
@@ -334,21 +332,6 @@ class Invoice:
                 })
         Move.post([m for m in moves if m.state != 'posted'])                
                 
-class Advanced(CompanyReport):
-    'Advanced'
-    __name__ = 'account.invoice.advanced'
-
-    @classmethod
-    def __setup__(cls):
-        super(Advanced, cls).__setup__()
-
-    @classmethod
-    def parse(cls, report, objects, data, localcontext=None):
-        localcontext['company'] = Transaction().context.get('company')
-        localcontext['invoice'] = Transaction().context.get('invoice')
-        return super(Advanced, cls).parse(report,
-                objects, data, localcontext)
-
 class WithholdingOutStart(ModelView):
     'Withholding Out Start'
     __name__ = 'nodux_account_withholding_ec.out_withholding.start'

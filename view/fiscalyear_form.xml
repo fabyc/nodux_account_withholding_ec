@@ -10,7 +10,5 @@ this repository contains the full copyright notices and license terms. -->
         <field name="out_withholding_sequence"/>
         <label name="in_withholding_sequence"/>
         <field name="in_withholding_sequence"/>
-        <label name="anticipo_sequence"/>
-        <field name="anticipo_sequence"/>
     </xpath>
 </data>

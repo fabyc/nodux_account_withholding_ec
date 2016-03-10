@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
 this repository contains the full copyright notices and license terms. -->
-<form string="WITHHOLDING" col="2">
+<form string="RETENCION PROVEEDOR" col="2">
     <image name="tryton-dialog-information" xexpand="0"
         xfill="0"/>
     <group col="2" id="withholding">
-        <label string="Are you sure to WITHHOLDING those/this invoice(s)?"
+        <label string="Esta seguro de generar un COMPROBANTE DE RETENCION PROVEEDOR"
             id="withholding" colspan="2"
             yalign="0.0" xalign="0.0" xexpand="1"/>
     </group>

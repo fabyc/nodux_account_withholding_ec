@@ -6,15 +6,4 @@ this repository contains the full copyright notices and license terms. -->
         <field name="ambiente"/>
     </xpath>
     
-    <xpath expr="/tree/field[@name='untaxed_amount']" states="{'invisible': Eval('type').in_(['anticipo'])}">
-        
-    </xpath>
-    
-    <xpath expr="/tree/field[@name='tax_amount']" states="{'invisible': Eval('type').in_(['anticipo'])}">
-        
-    </xpath>
-    
-    <xpath expr="/tree/field[@name='total_amount']" states="{'invisible': Eval('type').in_(['anticipo'])}">
-        
-    </xpath>
 </data>
