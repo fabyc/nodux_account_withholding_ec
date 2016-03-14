@@ -42,25 +42,10 @@ class FiscalYear:
             },
         depends=['company'])
         
-    anticipo_sequence = fields.Many2One('ir.sequence.strict',
-        'Advanced Payment Sequence', required=True,
-        domain=[
-            ('code', '=', 'account.invoice'),
-            ['OR',
-                ('company', '=', Eval('company')),
-                ('company', '=', None),
-                ],
-            ],
-        context={
-            'code': 'account.invoice',
-            'company': Eval('company'),
-            },
-        depends=['company'])
-
     def check_invoice_sequences(self):
         for sequence in ('out_invoice_sequence', 'in_invoice_sequence',
-                'out_credit_note_sequence', 'in_credit_note_sequence','out_debit_note_sequence',
-                'out_withholding_sequence','in_withholding_sequence', 'anticipo_sequence'):
+                'out_credit_note_sequence', 'in_credit_note_sequence',
+                'out_withholding_sequence','in_withholding_sequence'):
             fiscalyears = self.search([
                     (sequence, '=', getattr(self, sequence).id),
                     ('id', '!=', self.id),
@@ -78,8 +63,8 @@ class FiscalYear:
         actions = iter(args)
         for fiscalyears, values in zip(actions, actions):
             for sequence in ('out_invoice_sequence', 'in_invoice_sequence',
-                    'out_credit_note_sequence', 'in_credit_note_sequence','out_debit_note_sequence',
-                    'out_withholding_sequence','in_withholding_sequence','anticipo_sequence'):
+                    'out_credit_note_sequence', 'in_credit_note_sequence',
+                    'out_withholding_sequence','in_withholding_sequence'):
                     if not values.get(sequence):
                         continue
                     for fiscalyear in fiscalyears:
@@ -119,15 +104,6 @@ class Period:
             },
         depends=['type'])
     
-    anticipo_sequence = fields.Many2One('ir.sequence.strict',
-        'Advanced Payment Sequence',
-        domain=[('code', '=', 'account.invoice')],
-        context={'code': 'account.invoice'},
-        states={
-            'invisible': Eval('type') != 'standard',
-            },
-        depends=['type'])
-
     @classmethod
     def validate(cls, periods):
         super(Period, cls).validate(periods)
@@ -136,8 +112,8 @@ class Period:
 
     def check_invoice_sequences(self):
         for sequence_name in ('out_invoice_sequence', 'in_invoice_sequence',
-                'out_credit_note_sequence', 'in_credit_note_sequence','out_debit_note_sequence',
-                'out_withholding_sequence','in_withholding_sequence', 'anticipo_sequence'):
+                'out_credit_note_sequence', 'in_credit_note_sequence',
+                'out_withholding_sequence','in_withholding_sequence'):
             sequence = getattr(self, sequence_name)
             if not sequence:
                 continue
@@ -165,8 +141,8 @@ class Period:
             if vals.get('fiscalyear'):
                 fiscalyear = FiscalYear(vals['fiscalyear'])
                 for sequence in ('out_invoice_sequence', 'in_invoice_sequence',
-                        'out_credit_note_sequence', 'in_credit_note_sequence','out_debit_note_sequence',
-                        'out_withholding_sequence','in_withholding_sequence','anticipo_sequence'):
+                        'out_credit_note_sequence', 'in_credit_note_sequence',
+                        'out_withholding_sequence','in_withholding_sequence'):
                     if not vals.get(sequence):
                         vals[sequence] = getattr(fiscalyear, sequence).id
         return super(Period, cls).create(vlist)
@@ -178,8 +154,8 @@ class Period:
         for periods, values in zip(actions, actions):
             for sequence_name in ('out_invoice_sequence',
                     'in_invoice_sequence', 'out_credit_note_sequence',
-                    'in_credit_note_sequence', 'out_debit_note_sequence','out_withholding_sequence',
-                    'in_withholding_sequence', 'anticipo_sequence'):
+                    'in_credit_note_sequence','out_withholding_sequence',
+                    'in_withholding_sequence'):
                 if not values.get(sequence_name):
                     continue
                 for period in periods:

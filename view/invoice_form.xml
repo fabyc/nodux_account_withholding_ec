@@ -8,7 +8,7 @@ this repository contains the full copyright notices and license terms. -->
     
     <xpath expr="/form/notebook/page[@id='info']" position="before">
         <page string="Comprobante de Retencion Cliente" id="out_withholding" col="6"
-            states="{'invisible': Eval('type').in_(['in_credit_note', 'in_invoice', 'out_debit_note', 'out_credit_note', 'out_invoice', 'advanced'])}">
+            states="{'invisible': Eval('type').in_(['in_credit_note', 'in_invoice', 'out_debit_note', 'out_credit_note', 'out_invoice', 'advanced', 'delivery_note'])}">
             <newline/>
             <label name="invoice_date"/>
             <field name="invoice_date"/>

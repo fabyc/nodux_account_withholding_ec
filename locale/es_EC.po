@@ -48,7 +48,7 @@ msgstr "Impuesto de retención"
 
 msgctxt "field:account.invoice,value_withholding_b:"
 msgid "Valor a Retener Base"
-msgstr ""
+msgstr "Valor a retener base"
 
 msgctxt "field:account.invoice,value_withholding_t:"
 msgid "Valor a Retener"
@@ -56,7 +56,7 @@ msgstr "Total a retener"
 
 msgctxt "field:account.invoice,voucher:"
 msgid "Comprobante Retencion"
-msgstr "Comprobante retención"
+msgstr "Comprobante de retención"
 
 msgctxt "field:account.period,anticipo_sequence:"
 msgid "Advanced Payment Sequence"
@@ -80,50 +80,26 @@ msgstr "ID"
 
 msgctxt "model:ir.action,name:"
 msgid "Reporte de Retenciones"
-msgstr "Retención RIDE"
-
-msgctxt "model:ir.action,name:act_invoice_advanced_form"
-msgid "Generar Anticipo"
-msgstr "Generar anticipo"
+msgstr "Comprobante de anticipo"
 
 msgctxt "model:ir.action,name:act_invoice_in_withholding_form"
 msgid "Comprobante de Retencion Proveedor"
-msgstr "Comprobante de retención a proveedor"
+msgstr "Comp. de retención a proveedor"
 
 msgctxt "model:ir.action,name:act_invoice_out_withholding_form"
 msgid "Comprobante de Retencion Cliente"
-msgstr "Comprobante de retención  de cliente"
-
-msgctxt "model:ir.action,name:advanced"
-msgid "Comprobante de Anticipo"
-msgstr "Comprobante de anticipo"
+msgstr "Comp. de retención  de cliente"
 
 msgctxt "model:ir.action,name:in_withholding"
 msgid "Comprobante de Retencion Proveedor"
-msgstr "Comprobante de retención de proveedor"
+msgstr "Comp. de retención a proveedor"
 
 msgctxt "model:ir.action,name:out_withholding"
 msgid "Comprobante de Retencion Cliente"
-msgstr "Comprobante de retención de cliente"
+msgstr "Comp. de retención de cliente"
 
-msgctxt ""
-"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_all"
+msgctxt "model:ir.action.act_window.domain,name:"
 msgid "All"
-msgstr "Todo"
-
-msgctxt ""
-"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_draft"
-msgid "Draft"
-msgstr "Borrador"
-
-msgctxt ""
-"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_posted"
-msgid "Posted"
-msgstr "Contabilizado"
-
-msgctxt ""
-"model:ir.action.act_window.domain,name:act_invoice_advanced_domain_validated"
-msgid "Validated"
 msgstr "Validado"
 
 msgctxt ""
@@ -166,17 +142,17 @@ msgctxt ""
 msgid "Validated"
 msgstr "Validado"
 
-msgctxt "model:ir.ui.menu,name:menu_invoice_advanced_form"
+msgctxt "model:ir.ui.menu,name:"
 msgid "Generar Anticipo"
 msgstr "Generar anticipo"
 
 msgctxt "model:ir.ui.menu,name:menu_invoice_in_withholding_form"
 msgid "Comprobante de Retencion Proveedor"
-msgstr "Comprobante de retención de proveedor"
+msgstr "Comprobantes de retención a Proveedores"
 
 msgctxt "model:ir.ui.menu,name:menu_invoice_out_withholding_form"
 msgid "Comprobante de Retencion Cliente"
-msgstr "Comprobante de retención de cliente"
+msgstr "Comprobantes de Retención de Clientes"
 
 msgctxt "model:nodux_account_withholding_ec.out_withholding.start,name:"
 msgid "Withholding Out Start"
@@ -184,7 +160,7 @@ msgstr "Retención a proveedor - Iniciar"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid ":"
@@ -192,15 +168,15 @@ msgstr ":"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "Anticipo"
-msgstr ""
+msgstr "Anticipo"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "C"
-msgstr ""
+msgstr "C"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "Comprobante Anticipo"
-msgstr "Comprobante anticipo"
+msgstr "Comprobante de anticipo"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "Date:"
@@ -208,29 +184,28 @@ msgstr "Fecha:"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "Identificación:"
-msgstr ""
+msgstr "Identificación:"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "Impreso:"
-msgstr ""
+msgstr "Impreso:"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "MOTIVO"
-msgstr ""
+msgstr "MOTIVO"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "N°:"
-msgstr ""
+msgstr "N°:"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "Nº:"
-msgstr ""
+msgstr "N°:"
 
 msgctxt "odt:account.invoice.advanced:"
 msgid "OMPROBANTE DE ANTICIPO"
-msgstr ""
+msgstr "OMPROBANTE DE ANTICIPO"
 
-#, fuzzy
 msgctxt "odt:account.invoice.advanced:"
 msgid "RUC"
 msgstr "RUC"
@@ -245,15 +220,15 @@ msgstr "Valor de anticipo"
 
 msgctxt "selection:account.invoice,type:"
 msgid "Anticipo a Cliente"
-msgstr ""
+msgstr "Anticipo a cliente"
 
 msgctxt "selection:account.invoice,type:"
 msgid "Comprobante de Retencion Cliente "
-msgstr ""
+msgstr "Comprobante de retención de cliente"
 
 msgctxt "selection:account.invoice,type:"
 msgid "Comprobante de Retencion Proveedor "
-msgstr ""
+msgstr "Comprobante de retencion a proveedor "
 
 msgctxt "view:account.invoice:"
 msgid "Also known as Pro Forma"
@@ -261,7 +236,7 @@ msgstr "También conocido como proforma"
 
 msgctxt "view:account.invoice:"
 msgid "Anticipo Cliente"
-msgstr ""
+msgstr "Anticipo cliente"
 
 msgctxt "view:account.invoice:"
 msgid "Are you sure to cancel the invoice?"
@@ -292,8 +267,24 @@ msgid "_Post"
 msgstr "_Contabilizar"
 
 msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
+msgid " Esta seguro de generar un COMPROBANTE DE RETENCION ?"
+msgstr "¿Está seguro de generar un COMPROBANTE DE RETENCION?"
+
+msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
 msgid "Are you sure to WITHHOLDING those/this invoice(s)?"
 msgstr "¿Está seguro de realizar la retención a esta factura?"
+
+msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
+msgid "COMPROBANTE DE RETENCION CLIENTE"
+msgstr "COMPROBANTE DE RETENCION DE CLIENTE"
+
+msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
+msgid "Esta seguro de generar un COMPROBANTE DE RETENCION PROVEEDOR"
+msgstr "¿Está seguro de generar un COMPROBANTE DE RETENCION A PROVEEDOR?"
+
+msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
+msgid "RETENCION PROVEEDOR"
+msgstr "RETENCION A PROVEEDOR"
 
 msgctxt "view:nodux_account_withholding_ec.out_withholding.start:"
 msgid "SUPPLIER WITHHOLDING"

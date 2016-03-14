@@ -42,6 +42,10 @@ _TYPE2JOURNAL = {
     'out_withholding': 'revenue',
     'in_withholding': 'expense',
     'anticipo':'revenue',    
+    'out_invoice': 'revenue',
+    'in_invoice': 'expense',
+    'out_credit_note': 'revenue',
+    'in_credit_note': 'expense',
 }
 
 _WITHHOLDING_TYPE = {
@@ -73,7 +77,6 @@ class Invoice:
     total_withholding = fields.Numeric(u'Total a Retener')
     base_imponible = fields.Numeric(u'Valor Base imponible')
     iva = fields.Numeric(u'Valor Impuesto')
-    #untax = fields.Many2One('account.invoice.tax', u'Impuesto Retención')
             
     @classmethod
     def __setup__(cls):
@@ -137,7 +140,7 @@ class Invoice:
         pool = Pool()
         Period = pool.get('account.period')
         Sequence = pool.get('ir.sequence.strict')
-        Date = pool.get('ir.date')            
+        Date = pool.get('ir.date')     
         if self.number: 
             return
 
@@ -169,7 +172,7 @@ class Invoice:
         Journal = Pool().get('account.journal')
         res = {}
         journals = Journal.search([
-                ('type', '=', _TYPE2JOURNAL.get(self.type or 'out_withholding',
+                ('type', '=', _TYPE2JOURNAL.get(self.type or 'out_invoice',
                         'revenue')),
                 ], limit=1)
         if journals:
@@ -177,7 +180,7 @@ class Invoice:
             res['journal'] = journal.id
             res['journal.rec_name'] = journal.rec_name
         res.update(self.__get_account_payment_term())
-        return res    
+        return res
         
     def get_ventas(self):
         pool = Pool()
@@ -285,32 +288,17 @@ class Invoice:
 
     @classmethod
     @ModelView.button
-    @Workflow.transition('posted')
-    def post(cls, invoices):
-        Move = Pool().get('account.move')
-
-        moves = []
-        for invoice in invoices:
-            invoice.set_number()
-            moves.append(invoice.create_move())
-        cls.write([i for i in invoices if i.state != 'posted'], {
-                'state': 'posted',
-                })
-        Move.post([m for m in moves if m.state != 'posted'])
-        for invoice in invoices:
-            if invoice.type in ('out_invoice', 'out_credit_note'):
-                invoice.print_invoice()
-                    
-        
-    @classmethod
-    @ModelView.button
     @Workflow.transition('validated')
     def validate_invoice(cls, invoices):
         for invoice in invoices:
-            if invoice.type in ('in_withholding', 'out_withholding','anticipo'):
+            if invoice.type in ('in_withholding', 'out_withholding'):
+                print "Esta ingresando aqui*** validar w**"
                 #invoice.get_ventas()
                 invoice.set_number()
                 invoice.create_move()
+            if invoice.type in ('delivery_note'):
+                #invoice.get_ventas()
+                invoice.set_number()
                 
     @classmethod
     @ModelView.button
@@ -319,18 +307,21 @@ class Invoice:
         Move = Pool().get('account.move')
         moves = []
         for invoice in invoices:
-            if invoice.type in ('out_invoice', 'out_debit_note', 'out_credit_note'):
-                invoice.set_number()
-                moves.append(invoice.create_move())
-                
+            print "Esta ingresando aqui*** contabilizar wi**"
+            invoice.set_number()
+            moves.append(invoice.create_move())
+        for invoice in invoices:
             if invoice.type in ('out_withholding'):
-                invoice.set_number()
-                moves.append(invoice.create_move())
                 invoice.get_value()
         cls.write([i for i in invoices if i.state != 'posted'], {
                 'state': 'posted',
                 })
-        Move.post([m for m in moves if m.state != 'posted'])                
+        Move.post([m for m in moves if m.state != 'posted'])              
+        
+        for invoice in invoices:
+            if invoice.type in ('out_invoice', 'out_credit_note'):
+                invoice.print_invoice()
+                      
                 
 class WithholdingOutStart(ModelView):
     'Withholding Out Start'
@@ -356,7 +347,12 @@ class WithholdingOut(Wizard):
         Invoice = pool.get('account.invoice')
 
         invoices = Invoice.browse(Transaction().context['active_ids'])
-
+        print "el tipo de factura", invoices
+        for invoice in invoices:
+            if invoice.type != 'out_invoice':
+                self.raise_user_error('No puede generar un comprobante de retencion desde %s',invoice.type)
+        #presentar errores 
+        
         out_withholding = Invoice.withholdingOut(invoices)
 
         data = {'res_id': [i.id for i in out_withholding]}
@@ -395,82 +391,4 @@ class ReportWithholding(CompanyReport):
         localcontext['invoice'] = Transaction().context.get('invoice')
         return super(ReportWithholding, cls).parse(report,
                 objects, data, localcontext)
-"""
-class GenerateAdvanceStar(ModelView):
-    'Ganerate Advance'
-    __name__ = 'account.invoice.advance.start'
-    amount = fields.Numeric('Amount', digits=(16, Eval('currency_digits', 2)),
-        depends=['currency_digits'], required=True)
-    currency = fields.Many2One('currency.currency', 'Currency', required=True)
-    currency_digits = fields.Integer('Currency Digits', readonly=True)
-    description = fields.Char('Description', size=None)
-    journal = fields.Many2One('account.journal', 'Journal', required=True,
-            domain=[('type', '=', 'cash')])
-    date = fields.Date('Date', required=True)
 
-    @staticmethod
-    def default_date():
-        Date = Pool().get('ir.date')
-        return Date.today()
-
-    @staticmethod
-    def default_currency_digits():
-        return 2
-
-    @fields.depends('currency')
-    def on_change_with_currency_digits(self):
-        if self.currency:
-            return self.currency.digits
-        return 2
-        
-class GenerateAdvanced(Wizard):
-    'Generate Advanced'
-    __name__ = 'account.invoice.advanced'
-    start = StateView('account.invoice.advanced.start',
-        'account_invoice.advanced_start_view_form', [
-            Button('Cancel', 'end', 'tryton-cancel'),
-            Button('Ok', 'anticipo', 'tryton-ok', default=True),
-            ])
-    anticipo = StateTransition()
-
-    @classmethod
-    def __setup__(cls):
-        super(GenerateAdvanced, cls).__setup__()
-
-    def default_start(self, fields):
-        Invoice = Pool().get('account.invoice')
-        default = {}
-        invoice = Invoice(Transaction().context['active_id'])
-        default['currency'] = invoice.currency.id
-        default['currency_digits'] = invoice.currency.digits
-        default['amount'] = (invoice.amount_to_pay_today
-            or invoice.amount_to_pay)
-        default['description'] = invoice.number
-        return default
-
-class GenerateAdvancedStar(ModelView, ModelSQL):
-    'Generate Advanced'
-    __name__ = 'nodux_account_withholding_ec.generate_advanced.start'
-    monto = fields.Numeric('Monto de Anticipo', required = True)
-    currency = fields.Many2One('currency.currency', 'Currency', required=True)
-    currency_digits = fields.Integer('Currency Digits', readonly=True)
-    description = fields.Char('Description', size=None)
-    journal = fields.Many2One('account.journal', 'Journal', required=True,
-            domain=[('type', '=', 'cash')])
-    date = fields.Date('Date', required=True)
-    
-class GenerateAdvanced(Wizard):
-    'Generate Advanced'
-    __name__ = 'nodux_account_withholding_ec.generate_advanced'
-    #crear referencias:
-    start = StateView('nodux_account_withholding_ec.generate_advanced.start',
-        'nodux_account_withholding_ec.generate_advanced_start_view_form', [
-            Button('Cancel', 'end', 'tryton-cancel'),
-            Button('Generate Advanced', 'anticipo', 'tryton-ok', default=True),
-            ])
-    anticipo = StateTransition()
-
-   @classmethod
-    def __setup__(cls):
-        super(WithholdingOut, cls).__setup__()
-"""
